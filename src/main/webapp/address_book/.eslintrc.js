@@ -19,6 +19,8 @@ module.exports = {
     "no-multiple-empty-lines": [0, {"max": 100}],
     //关闭禁止混用tab和空格
     "no-mixed-spaces-and-tabs": [0],
+    "indent": "off",
+    'linebreak-style': ["off", "windows"],
   },
   parserOptions: {
     parser: 'babel-eslint'

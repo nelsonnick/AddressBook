@@ -8,4 +8,7 @@ src/main/webapp/fonts/
 src/main/webapp/img/
 src/main/webapp/js/
 src/main/webapp/index.html
-src/main/webapp/main.html
+src/main/webapp/county.html
+src/main/webapp/bureau.html
+src/main/webapp/department.html
+src/main/webapp/contact.html

@@ -1,31 +1,40 @@
 <template>
   <div>
     <Layout class="layout">
-      <Row>
-        <Col>
-          <div class="right">
-            <Button type="info" @click="goAdd"><Icon type="plus"></Icon>新增</Button>
-            <Button type="ghost" @click="goDown"><Icon type="ios-cloud-download"></Icon>下载</Button>
-            <Search @goQuery="getQuery"></Search>
+      <Header>
+        <MenuBar :active="active"></MenuBar>
+      </Header>
+        <Row>
+          <Col>
+            <div class="left">
+              <Breadcrumb :style="{margin: '20px 15px 0px 15px'}">
+                <BreadcrumbItem>人社通讯簿</BreadcrumbItem>
+                <BreadcrumbItem>部门</BreadcrumbItem>
+                <BreadcrumbItem>列表</BreadcrumbItem>
+              </Breadcrumb>
+            </div>
+            <div class="right">
+              <Button type="info" @click="goAdd">新增</Button>
+              <Search @goQuery="getQuery"></Search>
+            </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+          <div style="min-height: 200px;" class="layout-content">
+            <Table
+              highlight-row
+              :height="height"
+              :context="self"
+              :border="border"
+              :stripe="stripe"
+              :size="size"
+              :columns="columns"
+              :data="pageList">
+            </Table>
           </div>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-        <div style="min-height: 200px;" class="layout-content">
-          <Table
-            highlight-row
-            :height="height"
-            :context="self"
-            :border="border"
-            :stripe="stripe"
-            :size="size"
-            :columns="columns"
-            :data="pageList">
-          </Table>
-        </div>
-        </Col>
-      </Row>
+          </Col>
+        </Row>
       <Row>
         <Col>
         <div>
@@ -60,15 +69,15 @@
   import Page from '../Common/page.vue'
   import Options from '../Common/options.vue'
   import * as API from './API.js'
-  import * as BASE from '../Common/Base.js'
+  import MenuBar from '../Common/menubar.vue'
   import axios from 'axios'
 
   export default {
     name: 'list',
-    components: {Search, Page, Options},
+    components: { Search, Page, Options, MenuBar },
     data () {
       return {
-        name: '',
+        active: 'bureau',
         query: API.Query,
         total: API.Total,
         keyword: '',
@@ -84,55 +93,32 @@
           {
             title: '序号',
             key: 'id',
-            sortable: true,
             width: 80,
+            sortable: true,
             render: (h, params) => {
               return h('div', params.index + 1)
             }
           },
           {
-            title: '市区--部门--科室',
+            title: '市区',
             key: 'countyName',
-            sortable: true,
-            width: 80,
-              render: (h, params) => {
-                return h('div', params.row.countyName + '--' + params.row.bureauName + '--' + params.row.departmentName)
-              }
-          },
-          {
-            title: '办公地址',
-            key: 'departmentAddress',
             sortable: true
           },
           {
-            title: '经纬度',
-            key: 'where',
-            sortable: true,
-            render: (h, params) => {
-              return h('div', params.row.departmentLatitude + ',' + params.row.departmentLongitude)
-            }
-          },
-          {
-            title: '业务名称',
-            key: 'contactName',
-            sortable: true,
-            width: 80
-          },
-          {
-            title: '联系电话',
-            key: 'contactPhone',
+            title: '部门',
+            key: 'name',
             sortable: true
           },
           {
-            title: '房间号',
-            key: 'contactOffice',
-            sortable: true,
-            width: 80
+            title: '官网',
+            key: 'url',
+            sortable: true
           },
           {
             title: '操作',
-            key: 'operate',
+            key: 'state',
             align: 'center',
+            width: 300,
             render: (h, params) => {
               const operate = []
               operate.push(
@@ -143,10 +129,10 @@
                    },
                    on: {
                      click: () => {
-                       this.goEditContact(params.index)
+                       this.goEdit(params.index)
                      }
                    }
-                 }, '修改电话')
+                 }, '修改')
               )
               operate.push(
                  h('Button', {
@@ -208,19 +194,53 @@
       goAdd () {
         this.$router.push({path: '/add'})
       },
-      goEditContact (index) {
-        console.log(this.pageList[index].contactId)
-        this.$router.push({path: '/edit/' + this.pageList[index].contactId})
+      goEdit (index) {
+        this.$router.push({ path: '/edit/' + this.pageList[index].id })
       },
-      goDel (index) {
-        this.$router.push({path: '/del/' + this.pageList[index].contactId})
-      },
-      goDown () {
-        window.location.href = BASE.base + 'd/export?keyword=' + this.keyword
+      goDel(index) {
+        this.$Loading.start()
+        axios.get(API.Del, {
+          params: {
+            id: this.pageList[index].id
+          }
+        }).then(res => {
+          if (res.data === 'OK') {
+            this.$Loading.finish()
+            this.$Message.success('删除成功!')
+            this.getQuery(this.keyword)
+          } else {
+            this.$Loading.error()
+            this.$Notice.error({
+              title: res.data
+            })
+          }
+        }).catch(res => {
+          this.$Loading.error()
+          this.$Notice.error({
+            title: '服务器内部错误!'
+          })
+        })
       }
     }
   }
 </script>
+<style scoped>
+  .layout-content{
+    margin:0px 15px 0px 15px;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 4px;
+  }
+  .left{
+    margin: 15px;
+    border-radius: 4px;
+  }
+  .right{
+    margin: 15px;
+    border-radius: 4px;
+    float: right;
+  }
+</style>
 <style scoped>
   .layout-content {
     margin: 0px 15px 0px 15px;

@@ -35,7 +35,7 @@
           }
         }).then(res => {
           if (res.data === 'OK') {
-            window.location.href = '/d'
+            window.location.href = '/county'
           } else {
             this.$Message.error('用户名或密码错误!')
           }

@@ -8,7 +8,7 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.tx.TxByMethods;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
-import com.wts.controller.DepartmentController;
+import com.wts.controller.*;
 import com.wts.controller.MainController;
 import com.wts.entity.model._MappingKit;
 
@@ -31,7 +31,11 @@ public class Config extends JFinalConfig {
      */
     public void configRoute(Routes me) {
         me.add("/", MainController.class);
-        me.add("/d", DepartmentController.class);
+        me.add("/county", CountyController.class);
+        me.add("/bureau", BureauController.class);
+        me.add("/department", DepartmentController.class);
+        me.add("/contact", ContactController.class);
+
     }
 
     /**
