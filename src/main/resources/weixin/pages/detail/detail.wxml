@@ -1,0 +1,53 @@
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-cells__title">详细信息</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">市/区</view>
+        <view class="weui-cell__ft">{{cname}}</view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">局/部门</view>
+        <view class="weui-cell__ft">{{bname}}</view>
+      </view>
+      <view class="weui-cell" hidden="{{dname==''}}">
+        <view class="weui-cell__bd">处室/科室</view>
+        <view class="weui-cell__ft">{{dname}}</view>
+      </view>
+      <view class="weui-cell" hidden="{{address==''}}">
+        <view class="weui-cell__bd">地址</view>
+        <view class="weui-cell__ft">{{address}}</view>
+      </view>
+    </view>
+    <view class="weui-cell" hidden="{{duty==''}}">
+      <view class="weui-cell__bd">职责</view>
+      <view class="weui-cell__ft">{{duty}}</view>
+    </view>
+    <view class="weui-cell" hidden="{{remark==''}}">
+      <view class="weui-cell__bd">备注</view>
+      <view class="weui-cell__ft">{{remark}}</view>
+    </view>
+    <view class="weui-cells__title" hidden="{{contact==''}}">联系电话</view>
+    <view wx:for="{{contact}}" wx:key="contact.phone">
+      <view class="weui-cells weui-cells_after-title" hidden="{{item.phone==''}}">
+        <view class="weui-cell" data-phone='{{item.phone}}' bindtap="callPhone">
+          <view class="weui-cell__bd">{{item.name}}：{{item.office}}</view>
+          <view class="weui-cell__ft">{{item.phone}}</view>
+        </view>
+      </view>
+
+    </view>
+  </view>
+  <view class="weui-cells__title"></view>
+  <view class="page__bd page__bd_spacing">
+    <button class="weui-btn" type="primary" bindtap="goMap">去这里</button>
+    <button class="weui-btn" type="default" bindtap="goBack">返回</button>
+  </view>
+  <view class="weui-cells__title"></view>
+  <view class="weui-footer">
+    <view class="weui-footer__links">
+      <view class="weui-footer__link" bindtap="goError">我要报错</view>
+    </view>
+    <view class="weui-footer__text" bindtap="goError">Copyright © 2018-2018</view>
+  </view>
+</view>

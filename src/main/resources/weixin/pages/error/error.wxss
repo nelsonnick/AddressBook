@@ -1,0 +1,17 @@
+@import "../../lib/weui.wxss";
+.checkbox{
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  justify-content: left;
+  width: 300rpx;
+  margin: 10rpx;
+}
+.page-section{
+  margin-bottom: 20rpx;
+}
+.weui-cell_input {
+  padding: 10px;
+  padding-top: 0;
+  padding-bottom: 0;
+}

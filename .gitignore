@@ -1,0 +1,11 @@
+log/
+target/
+.idea/
+src/main/webapp/address_book/node_modules/
+src/main/webapp/address_book/dist/
+src/main/webapp/css/
+src/main/webapp/fonts/
+src/main/webapp/img/
+src/main/webapp/js/
+src/main/webapp/index.html
+src/main/webapp/main.html

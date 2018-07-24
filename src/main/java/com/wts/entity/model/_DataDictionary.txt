@@ -1,0 +1,52 @@
+Table: bureau
+--------+--------------+------+-----+---------+---------
+ Field  | Type         | Null | Key | Default | Remarks 
+--------+--------------+------+-----+---------+---------
+ id     | INT(10)      | NO   | PRI |         |         
+ cid    | INT(10)      | YES  |     |         |         
+ name   | VARCHAR(255) | YES  |     |         |         
+ url    | VARCHAR(255) | YES  |     |         |         
+ duty   | VARCHAR(255) | YES  |     |         |         
+ remark | VARCHAR(255) | YES  |     |         |         
+--------+--------------+------+-----+---------+---------
+
+Table: contact
+-----------+--------------+------+-----+---------+---------
+ Field     | Type         | Null | Key | Default | Remarks 
+-----------+--------------+------+-----+---------+---------
+ id        | INT(10)      | NO   | PRI |         |         
+ did       | INT(10)      | YES  |     |         |         
+ name      | VARCHAR(255) | YES  |     |         |         
+ phone     | VARCHAR(255) | YES  |     |         |         
+ office    | VARCHAR(255) | YES  |     |         |         
+ address   | VARCHAR(255) | YES  |     |         |         
+ latitude  | VARCHAR(255) | YES  |     |         |         
+ longitude | VARCHAR(255) | YES  |     |         |         
+ duty      | VARCHAR(255) | YES  |     |         |         
+ remark    | VARCHAR(255) | YES  |     |         |         
+-----------+--------------+------+-----+---------+---------
+
+Table: county
+-------+--------------+------+-----+---------+---------
+ Field | Type         | Null | Key | Default | Remarks 
+-------+--------------+------+-----+---------+---------
+ id    | INT(10)      | NO   | PRI |         |         
+ name  | VARCHAR(255) | YES  |     |         |         
+ url   | VARCHAR(255) | YES  |     |         |         
+-------+--------------+------+-----+---------+---------
+
+Table: department
+-----------+--------------+------+-----+---------+---------
+ Field     | Type         | Null | Key | Default | Remarks 
+-----------+--------------+------+-----+---------+---------
+ id        | INT(10)      | NO   | PRI |         |         
+ bid       | INT(10)      | YES  |     |         |         
+ name      | VARCHAR(255) | YES  |     |         |         
+ address   | VARCHAR(255) | YES  |     |         |         
+ img       | VARCHAR(255) | YES  |     |         |         
+ latitude  | VARCHAR(255) | YES  |     |         |         
+ longitude | VARCHAR(255) | YES  |     |         |         
+ duty      | VARCHAR(255) | YES  |     |         |         
+ remark    | VARCHAR(255) | YES  |     |         |         
+-----------+--------------+------+-----+---------+---------
+

@@ -1,0 +1,39 @@
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-cells__title">详细信息</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">市/区</view>
+        <view class="weui-cell__ft">{{cname}}</view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">局/部门</view>
+        <view class="weui-cell__ft">{{bname}}</view>
+      </view>
+      <view class="weui-cell" hidden="{{dname==''}}">
+        <view class="weui-cell__bd">处室/科室</view>
+        <view class="weui-cell__ft">{{dname}}</view>
+      </view>
+    </view>
+    <checkbox-group bindchange="checkboxChange">
+      <view class="weui-cells__title">错误内容：</view>
+      <label class="checkbox" wx:for="{{errors}}" wx:key="errors.name">
+        <checkbox value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+      </label>
+    </checkbox-group>
+    <view class="weui-cells__title">请输入正确的信息</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <textarea class="weui-textarea" placeholder="提供建议也可以哦" style="height: 3.3em" bindinput="bindKeyInput" />
+          <view class="weui-textarea-counter">0/200</view>
+        </view>
+      </view>
+    </view>
+    <view class="weui-cells__title"></view>
+    <view class="page__bd page__bd_spacing">
+      <button class="weui-btn" type="primary" bindtap="goSend">提交</button>
+      <button class="weui-btn" type="default" bindtap="goBack">返回</button>
+    </view>
+  </view>
+</view>

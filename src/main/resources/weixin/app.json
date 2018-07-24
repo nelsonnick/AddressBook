@@ -1,0 +1,14 @@
+{
+  "pages": [
+    "pages/location/location",
+    "pages/detail/detail",
+    "pages/error/error"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "济南人社通讯簿",
+    "navigationBarTextStyle": "black"
+  },
+  "debug": false
+}

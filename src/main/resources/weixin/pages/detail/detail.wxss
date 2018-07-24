@@ -1,0 +1,6 @@
+@import "../../lib/weui.wxss";
+.weui-cell_input {
+  padding: 10px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
