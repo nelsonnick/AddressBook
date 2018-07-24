@@ -9,7 +9,7 @@
             <div class="left">
               <Breadcrumb :style="{margin: '20px 15px 0px 15px'}">
                 <BreadcrumbItem>人社通讯簿</BreadcrumbItem>
-                <BreadcrumbItem>科室</BreadcrumbItem>
+                <BreadcrumbItem>联络</BreadcrumbItem>
                 <BreadcrumbItem>列表</BreadcrumbItem>
               </Breadcrumb>
             </div>
@@ -77,7 +77,7 @@
     components: { Search, Page, Options, MenuBar },
     data () {
       return {
-        active: 'department',
+        active: 'contact',
         query: API.Query,
         total: API.Total,
         keyword: '',
@@ -111,28 +111,25 @@
           },
           {
             title: '科室',
+            key: 'departmentName',
+            sortable: true
+          },
+          {
+            title: '名称',
             key: 'name',
+            sortable: true,
+            width: 80
+          },
+          {
+            title: '联系电话',
+            key: 'phone',
             sortable: true
           },
           {
-            title: '地址',
-            key: 'address',
-            sortable: true
-          },
-          {
-            title: '图片',
-            key: 'img',
-            sortable: true
-          },
-          {
-            title: '经度',
-            key: 'latitude',
-            sortable: true
-          },
-          {
-            title: '纬度',
-            key: 'longitude',
-            sortable: true
+            title: '房间号',
+            key: 'office',
+            sortable: true,
+            width: 80
           },
           {
             title: '操作',

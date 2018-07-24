@@ -4,6 +4,7 @@ import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
 import com.wts.entity.model.Bureau;
 import com.wts.entity.model.County;
+import com.wts.entity.model.Department;
 import com.wts.interceptor.LoginInterceptor;
 
 import java.util.List;
@@ -40,6 +41,17 @@ public class MainController extends Controller {
         String str = "";
         for (Bureau bureau : Bureaues) {
             str = str + "{value: '" + bureau.getId() + "',label:'" + bureau.getName() + "'},";
+        }
+        str = str.substring(0, str.length() - 1);
+        renderJson("[" + str + "]");
+    }
+
+    @Before(LoginInterceptor.class)
+    public void getDepartment() {
+        List<Department> Departments = Department.dao.find("SELECT * FROM department WHERE bid = " + getPara("bureauId"));
+        String str = "";
+        for (Department department : Departments) {
+            str = str + "{value: '" + department.getId() + "',label:'" + department.getName() + "'},";
         }
         str = str.substring(0, str.length() - 1);
         renderJson("[" + str + "]");

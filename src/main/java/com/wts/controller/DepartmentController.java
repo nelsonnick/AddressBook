@@ -32,7 +32,6 @@ public class DepartmentController extends Controller {
                 " OR department.name LIKE '%" + getPara("keyword") + "%' " +
                 " ORDER BY" +
                 " department.id";
-        System.out.println(select+sqlExceptSelect);
         renderJson(Db.paginate(
                 getParaToInt("pageCurrent"),
                 getParaToInt("pageSize"),

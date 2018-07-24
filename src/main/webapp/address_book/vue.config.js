@@ -15,6 +15,10 @@ module.exports = {
     department: {
       entry: './src/Department/index.js',
       template: `./html/template.html`
+    },
+    contact: {
+      entry: './src/Contact/index.js',
+      template: `./html/template.html`
     }
   }
 }

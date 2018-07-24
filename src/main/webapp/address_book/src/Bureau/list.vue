@@ -14,7 +14,7 @@
               </Breadcrumb>
             </div>
             <div class="right">
-              <Button type="info" @click="goAdd">新增</Button>
+              <Button type="success" @click="goAdd">新增</Button>
               <Search @goQuery="getQuery"></Search>
             </div>
           </Col>
