@@ -80,3 +80,18 @@ CREATE TABLE `department` (
   KEY `department_bureau` (`bid`),
   CONSTRAINT `department_bureau` FOREIGN KEY (`bid`) REFERENCES `bureau` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=509 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for wrong
+-- ----------------------------
+DROP TABLE IF EXISTS `wrong`;
+CREATE TABLE `wrong` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `did` int(11) DEFAULT NULL,
+  `type` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '错误类型',
+  `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '内容',
+  `time` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '提交时间',
+  PRIMARY KEY (`id`),
+  KEY `wrong_department` (`did`),
+  CONSTRAINT `wrong_department` FOREIGN KEY (`did`) REFERENCES `department` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

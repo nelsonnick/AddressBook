@@ -35,7 +35,7 @@ public class Config extends JFinalConfig {
         me.add("/bureau", BureauController.class);
         me.add("/department", DepartmentController.class);
         me.add("/contact", ContactController.class);
-
+        me.add("/wrong", WrongController.class);
     }
 
     /**

@@ -37,11 +37,14 @@
             <Form-item label="名称" required>
               <Input size="large" v-model="name"  style="width: 600px"></Input>
             </Form-item>
+            <Form-item label="电话" required>
+              <Input size="large" v-model="phone" style="width: 600px"></Input>
+            </Form-item>
             <Form-item label="地址" required>
               <Input size="large" v-model="address" style="width: 600px"></Input>
             </Form-item>
-            <Form-item label="电话" required>
-              <Input size="large" v-model="phone" style="width: 600px"></Input>
+            <Form-item label="办公室号" required>
+              <Input size="large" v-model="office" style="width: 600px"></Input>
             </Form-item>
             <Form-item label="经度" required>
               <Input size="large" v-model="latitude" style="width: 600px"></Input>
@@ -85,6 +88,7 @@
         name: '',
         address: '',
         phone: '',
+        office: '',
         latitude: '',
         longitude: '',
         duty: '',
@@ -115,6 +119,7 @@
             departmentId: this.departmentId,
             name: this.name,
             address: this.address,
+            office: this.office,
             phone: this.phone,
             latitude: this.latitude,
             longitude: this.longitude,
@@ -154,6 +159,7 @@
           this.name = res.data.name
           this.address = res.data.address
           this.phone = res.data.phone
+          this.office = res.data.office
           this.latitude = res.data.latitude
           this.longitude = res.data.longitude
           this.duty = res.data.duty

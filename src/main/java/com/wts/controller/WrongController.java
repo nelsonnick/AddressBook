@@ -4,17 +4,17 @@ import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.tx.Tx;
-import com.wts.entity.model.Contact;
+import com.wts.entity.model.Bureau;
+import com.wts.entity.model.Wrong;
 import com.wts.interceptor.LoginInterceptor;
 import org.apache.log4j.Logger;
 
 import java.util.Date;
 
-public class ContactController extends Controller {
-    private static Logger logger = Logger.getLogger(Contact.class);
-
+public class WrongController extends Controller {
+    private static Logger logger = Logger.getLogger(Wrong.class);
     public void index() {
-        render("/contact.html");
+        render("/wrong.html");
     }
 
     @Before(LoginInterceptor.class)
@@ -32,19 +32,19 @@ public class ContactController extends Controller {
                 "  department.longitude AS departmentLongitude," +
                 "  department.duty AS departmentDuty," +
                 "  department.remark AS departmentRemark," +
-                "  contact.*";
+                "  wrong.*";
         String sqlExceptSelect = "FROM" +
-                " contact" +
-                " LEFT JOIN department ON department.id = contact.did" +
+                " wrong" +
+                " LEFT JOIN department ON department.id = wrong.did" +
                 " LEFT JOIN bureau ON bureau.id = department.bid" +
                 " LEFT JOIN county ON county.id = bureau.cid" +
                 " WHERE county.name LIKE '%" + getPara("keyword") + "%' " +
                 " OR bureau.name LIKE '%" + getPara("keyword") + "%' " +
                 " OR department.name LIKE '%" + getPara("keyword") + "%' " +
-                " OR contact.name LIKE '%" + getPara("keyword") + "%' " +
-                " OR contact.phone LIKE '%" + getPara("keyword") + "%' " +
+                " OR wrong.type LIKE '%" + getPara("keyword") + "%' " +
+                " OR wrong.content LIKE '%" + getPara("keyword") + "%' " +
                 " ORDER BY" +
-                " contact.id DESC";
+                " wrong.id DESC";
         renderJson(Db.paginate(
                 getParaToInt("pageCurrent"),
                 getParaToInt("pageSize"),
@@ -54,58 +54,39 @@ public class ContactController extends Controller {
 
     @Before(LoginInterceptor.class)
     public void Total() {
-        Long count = Db.queryLong("SELECT COUNT(*) FROM contact " +
-                " LEFT JOIN department ON department.id = contact.did" +
+        Long count = Db.queryLong("SELECT COUNT(*) FROM wrong " +
+                " LEFT JOIN department ON department.id = wrong.did" +
                 " LEFT JOIN bureau ON bureau.id = department.bid" +
                 " LEFT JOIN county ON county.id = bureau.cid" +
                 " WHERE county.name LIKE '%" + getPara("keyword") + "%' " +
                 " OR bureau.name LIKE '%" + getPara("keyword") + "%' " +
                 " OR department.name LIKE '%" + getPara("keyword") + "%' " +
-                " OR contact.name LIKE '%" + getPara("keyword") + "%' " +
-                " OR contact.phone LIKE '%" + getPara("keyword") + "%' ");
+                " OR wrong.type LIKE '%" + getPara("keyword") + "%' " +
+                " OR wrong.content LIKE '%" + getPara("keyword") + "%' ");
         renderText(count.toString());
     }
 
     @Before(LoginInterceptor.class)
     public void Get() {
-        renderJson(Contact.dao.findById(getPara("id")));
+        renderJson(Wrong.dao.findById(getPara("id")));
+    }
+
+    @Before({Tx.class, LoginInterceptor.class})
+    public void Del() {
+        Wrong w = Wrong.dao.findById(getPara("id"));
+        renderText("OK");
     }
 
     @Before({Tx.class, LoginInterceptor.class})
     public void Add() {
-        Contact contact = new Contact();
-        contact.set("name", getPara("name"))
-                .set("address", getPara("address"))
-                .set("phone", getPara("phone"))
-                .set("office", getPara("office"))
-                .set("latitude", getPara("latitude"))
-                .set("longitude", getPara("longitude"))
-                .set("duty", getPara("duty"))
-                .set("remark", getPara("remark"))
-                .set("did", getPara("departmentId"))
+        Wrong wrong = new Wrong();
+        wrong.set("did", getPara("departmentId"))
+                .set("type", getPara("type"))
+                .set("content", getPara("content"))
+                .set("time", new Date())
                 .save();
         logger.warn("function:" + this.getClass().getSimpleName() + "/Add;" + ";time:" + new Date() + ";");
         renderText("OK");
     }
 
-    @Before({Tx.class,LoginInterceptor.class})
-    public void Edit() {
-        Contact contact = Contact.dao.findById(getPara("id"));
-        if (contact == null) {
-            renderText("要修改的信息不存在，请刷新页面后再试！");
-        }else{
-            contact.set("name", getPara("name"))
-                    .set("phone", getPara("phone"))
-                    .set("office", getPara("office"))
-                    .set("address", getPara("address"))
-                    .set("latitude", getPara("latitude"))
-                    .set("longitude", getPara("longitude"))
-                    .set("duty", getPara("duty"))
-                    .set("remark", getPara("remark"))
-                    .set("did", getPara("departmentId"))
-                    .update();
-            logger.warn("function:" + this.getClass().getSimpleName() + "/Edit;" + ";time:" + new Date() + ";");
-            renderText("OK");
-        }
-    }
 }

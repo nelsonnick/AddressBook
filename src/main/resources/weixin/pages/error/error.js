@@ -35,8 +35,9 @@ Page({
     // wx.request({
     //   url: 'test.php', 
     //   data: {
-    //     checkboxValue: this.data.checkboxValue,
-    //     inputValue: this.data.inputValue
+    //     did: this.data.did,
+    //     type: this.data.checkboxValue,
+    //     content: this.data.inputValue
     //   },
     //   header: {
     //     'content-type': 'application/json'

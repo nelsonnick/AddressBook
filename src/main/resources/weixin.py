@@ -6,6 +6,8 @@ import pymysql
 
 
 def getStr(id, name):
+    http = ''
+    jpg = ''
     str1 = ''
     str2 = ''
     str3 = ''
@@ -42,7 +44,7 @@ def getStr(id, name):
                 contact_phone = contact[5]
                 contact_office = contact[6]
                 str1 = str1 + '{name:"' + contact_name + '",phone:"' + contact_phone + '"},'
-            str2 = str2 + '{name:"' + department_name + '",contact:[' + str1[:-1] + '],address:"' + department_address + '",img:"' + department_img + '",latitude:' + str(
+            str2 = str2 + '{name:"' + department_name + '",contact:[' + str1[:-1] + '],address:"' + department_address + '",img:"' + http + department_img + jpg + '",latitude:' + str(
                 department_latitude) + ',longitude:' + str(
                 department_longitude) + ',duty:"' + department_duty + '",remark:"' + department_remark + '"},'
             str1 = ''
@@ -138,6 +140,6 @@ def getPic():
         c = c + 1
 
 
-getPic()
+getfile()
 
 

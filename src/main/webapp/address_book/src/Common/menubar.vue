@@ -5,6 +5,7 @@
       <MenuItem name="bureau">部门</MenuItem>
       <MenuItem name="department">科室</MenuItem>
       <MenuItem name="contact">联络</MenuItem>
+      <MenuItem name="wrong">报错</MenuItem>
     </div>
   </Menu>
 </template>
@@ -23,6 +24,8 @@
           window.location.href = BASE.base + 'department'
         } else if (name.toString() === 'contact') {
           window.location.href = BASE.base + 'contact'
+        } else if (name.toString() === 'wrong') {
+          window.location.href = BASE.base + 'wrong'
         } else {
           window.location.href = BASE.base
         }

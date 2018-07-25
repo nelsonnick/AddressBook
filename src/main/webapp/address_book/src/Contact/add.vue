@@ -37,11 +37,14 @@
           <Form-item label="名称" required>
             <Input size="large" v-model="name"  style="width: 600px"></Input>
           </Form-item>
+          <Form-item label="电话" required>
+            <Input size="large" v-model="phone" style="width: 600px"></Input>
+          </Form-item>
           <Form-item label="地址" required>
             <Input size="large" v-model="address" style="width: 600px"></Input>
           </Form-item>
-          <Form-item label="电话" required>
-            <Input size="large" v-model="phone" style="width: 600px"></Input>
+          <Form-item label="办公室号" required>
+            <Input size="large" v-model="office" style="width: 600px"></Input>
           </Form-item>
           <Form-item label="经度" required>
             <Input size="large" v-model="latitude" style="width: 600px"></Input>
@@ -81,10 +84,11 @@
         dis: false,
         countyId: '1',
         bureauId: '1',
-        departmentId: '',
+        departmentId: '1',
         name: '',
         address: '',
         phone: '',
+        office: '',
         latitude: '',
         longitude: '',
         duty: '',
@@ -97,19 +101,21 @@
     created: function () {
       this.getCounty()
       this.getBureau('1')
+      this.getDepartment('1')
     },
     methods: {
       goReset () {
         this.name = ''
         this.address = ''
         this.phone = ''
+        this.office = ''
         this.latitude = ''
         this.longitude = ''
         this.duty = ''
         this.remark = ''
         this.countyId = '1'
         this.bureauId = '1'
-        this.departmentId = ''
+        this.departmentId = '1'
       },
       goSave() {
         this.dis = true
@@ -120,6 +126,7 @@
             name: this.name,
             address: this.address,
             phone: this.phone,
+            office: this.office,
             latitude: this.latitude,
             longitude: this.longitude,
             duty: this.duty,

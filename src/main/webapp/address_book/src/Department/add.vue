@@ -75,7 +75,7 @@
         active: 'department',
         dis: false,
         countyId: '1',
-        bureauId: '',
+        bureauId: '1',
         name: '',
         address: '',
         img: '',
@@ -86,11 +86,11 @@
         county: [],
         bureau: []
       }
-    },created: function () {
+    },
+    created: function () {
       this.getCounty()
       this.getBureau('1')
     },
-
     methods: {
       goReset () {
         this.name = ''

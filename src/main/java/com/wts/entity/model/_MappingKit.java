@@ -20,6 +20,7 @@ public class _MappingKit {
 		arp.addMapping("contact", "id", Contact.class);
 		arp.addMapping("county", "id", County.class);
 		arp.addMapping("department", "id", Department.class);
+		arp.addMapping("wrong", "id", Wrong.class);
 	}
 }
 

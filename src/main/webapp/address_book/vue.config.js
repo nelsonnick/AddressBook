@@ -19,6 +19,10 @@ module.exports = {
     contact: {
       entry: './src/Contact/index.js',
       template: `./html/template.html`
+    },
+    wrong: {
+      entry: './src/Wrong/index.js',
+      template: `./html/template.html`
     }
   }
 }
